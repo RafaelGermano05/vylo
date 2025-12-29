@@ -1,8 +1,8 @@
 /* RESET E CONFIGURAÇÕES GERAIS */
 :root {
-    --primary-dark: #11061f;
-    --primary-purple: #23153d;
-    --secondary-purple: #2d1f47;
+    --primary-dark: #0c0416;
+    --primary-purple: #190f2c;
+    --secondary-purple: #1c132c;
     --accent-yellow: #2bfb24;
     --accent-yellow-dark: #d9a806;
     --accent-purple: #7c3aed;
@@ -1346,8 +1346,8 @@ body {
 }
 
 .bubble-yellow {
-    background: linear-gradient(135deg, var(--accent-yellow), #d97706);
-    color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--accent-yellow), #6e8b02);
+    color: var(--white);
 }
 
 .bubble:hover {
