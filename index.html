@@ -7,21 +7,373 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="stylesheet" href="styles/main.css">
     <link rel="shortcut icon" href="assets/Design sem nome (3).svg" type="image/x-icon">
+    <link rel="stylesheet" href="styles/main.css">
     <style>
         .hero{
-        background: linear-gradient(rgba(20, 3, 34, 0), rgba(34, 15, 46, 0)),
-                    url('assets/ChatGPT\ Image\ 29\ de\ dez.\ de\ 2025\,\ 16_08_46.png') no-repeat center center/cover;
+            background: linear-gradient(rgba(20, 3, 34, 0.5), rgba(34, 15, 46, 0.336)),
+                        url('assets/ChatGPT\ Image\ 29\ de\ dez.\ de\ 2025\,\ 16_08_46.png') no-repeat center center/cover;
+        }
+
+        .about-vylo {
+            background: linear-gradient(rgba(21, 7, 39, 0.89), rgba(25, 15, 44, 0.945)),
+                url('assets/Internet\ Streaming\ GIF\ by\ Butlerm.gif') no-repeat center center/cover;
+            
+            /* Garante que cubra toda a section */
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .who-we-are {
+            background: linear-gradient(rgba(12, 4, 22, 0.856), rgba(25, 15, 44, 0.925)),
+                url('assets/Design\ sem\ nome.gif') no-repeat center center/cover;
+            
+            /* Garante que cubra toda a section */
+            background-attachment: fixed; /* Opcional: efeito parallax */
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+         .know-more {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-dark) 100%);
+            position: relative;
+        }
+
+        .knowledge-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .knowledge-hero {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .knowledge-hero-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(18, 197, 152, 0.1), rgba(124, 58, 237, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .knowledge-hero-image::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(18,197,152,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero-stats {
+            position: relative;
+            z-index: 2;
+            background: rgba(12, 4, 22, 0.8);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .hero-stats-title {
+            text-align: center;
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(18, 197, 152, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--medium-gray);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        } */
+
+        .knowledge-content {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .knowledge-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .knowledge-tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--medium-gray);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .knowledge-tab:hover {
+            background: rgba(18, 197, 152, 0.1);
+            color: var(--accent-yellow);
+        }
+
+        .knowledge-tab.active {
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+            border-color: var(--accent-yellow);
+        }
+
+        .knowledge-panels {
+            position: relative;
+        }
+
+        .knowledge-panel {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .knowledge-panel.active {
+            display: block;
+        }
+
+        .panel-title {
+            font-size: 1.75rem;
+            color: var(--accent-yellow);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .panel-description {
+            color: var(--medium-gray);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .panel-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .panel-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .panel-feature:hover {
+            background: rgba(18, 197, 152, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(18, 197, 152, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon i {
+            font-size: 1.25rem;
+            color: var(--accent-yellow);
+        }
+
+        .feature-content h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .feature-content p {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .panel-features {
+                grid-template-columns: 1fr;
+            }
+
+            .knowledge-content {
+                padding: 1.5rem;
+            }
+
+            .knowledge-tabs {
+                justify-content: center;
+            }
+
+            .knowledge-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .hero-stats {
+                padding: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-purple) 100%);
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            position: relative;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+
+        .logo-main {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .logo-dot {
+            color: var(--accent-yellow);
+        }
+
+        .logo-sub {
+            color: var(--accent-yellow);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-width: 400px;
+        }
+
+        .footer-copyright,
+        .footer-company,
+        .footer-certification {
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        .footer-certification {
+            font-style: italic;
+            margin-top: 0.5rem;
+            color: var(--accent-yellow);
+            opacity: 0.8;
+        }
+
+        .privacy-link {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 0.5rem;
+        }
+
+        .privacy-link:hover {
+            color: var(--accent-yellow-hover);
+            border-color: var(--accent-yellow);
+            background: rgba(18, 197, 152, 0.1);
         }
     </style>
 </head>
 <body>
-    <!-- NAVBAR -->
+    <!-- NAVBAR (Opcional - descomente se quiser usar) -->
+    
     <!-- <nav class="navbar">
         <div class="container">
-            <div class="nav-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-container" id="navContainer">
                 <a href="#hero" class="nav-link">Início</a>
                 <a href="#about-vylo" class="nav-link">Sobre a VYLO</a>
                 <a href="#stats" class="nav-link">Nossa Atuação</a>
@@ -41,8 +393,8 @@
                 <div class="hero-content">
                     <!-- Badge de Certificação -->
                     <div data-aos="fade-down" data-aos-duration="600">
-                        <div>
-                            <img src="assets/Design sem nome (3).svg" style="width: 100px;"></img>
+                        <div class="hero-logo">
+                            <img src="assets/Design sem nome (3).svg" alt="VYLO Digital" class="logo-img">
                         </div>
                         <div class="badge-content">
                             <span class="badge-subtitle">Mercado Livre | Norte & Nordeste</span>
@@ -50,7 +402,7 @@
                     </div>
                     
                     <!-- Título Principal -->
-                    <h1 class="hero-title" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" style="font-family: 'inter', sans-serif"">
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
                         <span class="title-line">Transforme o seu negócio</span>
                         <span class="title-line highlight">em uma <span class="highlight-text">Máquina de Vendas</span></span>
                         <span class="title-line">no Mercado Livre</span>
@@ -78,7 +430,7 @@
         </div>
     </section>
 
-    <!-- About VYLO Section -->
+    <!-- About VYLO Section - SIMPLIFICADA -->
     <section class="about-vylo" id="about-vylo">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -87,28 +439,25 @@
             </div>
             
             <div class="vylo-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Card 1: Com método e certificação -->
                 <div class="vylo-card">
-                    <div class="card-icon">
-                        <i class="fas fa-chess-knight"></i>
+                    <div class="card-image-container">
+                        <img src="assets/Design sem nome (7).svg" alt="Com método e certificação" class="card-image">
                     </div>
-                    <h3>Com método e certificação</h3>
-                    <p>Metodologia própria validada pelo Mercado Livre e visão de longo prazo.</p>
                 </div>
                 
-                <div class="vylo-card negative">
-                    <div class="card-icon">
-                        <i class="fas fa-times-circle"></i>
+                <!-- Card 2: Sem truques ou atalhos -->
+                <div class="vylo-card">
+                    <div class="card-image-container">
+                        <img src="assets/Design sem nome (5).svg" alt="Sem truques ou atalhos" class="card-image">
                     </div>
-                    <h3>Sem truques ou atalhos</h3>
-                    <p>Não prometemos fórmulas mágicas. Criamos operações que escalam de verdade.</p>
                 </div>
                 
-                <div class="vylo-card positive">
-                    <div class="card-icon">
-                        <i class="fas fa-rocket"></i>
+                <!-- Card 3: Resultados comprovados -->
+                <div class="vylo-card">
+                    <div class="card-image-container">
+                        <img src="assets/Design sem nome (6).svg" alt="Resultados comprovados" class="card-image">
                     </div>
-                    <h3>Resultados comprovados</h3>
-                    <p>Operações estruturadas para crescimento sustentável e resultados duradouros.</p>
                 </div>
             </div>
         </div>
@@ -273,50 +622,191 @@
                 <p class="section-subtitle">Conhecimento validado pela plataforma</p>
             </div>
             
-            <div class="knowledge-grid" data-aos="fade-up" data-aos-delay="200">
-                <div class="knowledge-card">
-                    <div class="knowledge-icon">
-                        <i class="fas fa-shield-alt"></i>
+            <div class="knowledge-container" data-aos="fade-up" data-aos-delay="200">
+                <!-- Container superior com imagem/estatísticas -->
+                <div class="knowledge-hero">
+                    <div class="knowledge-hero-image">
+                       <img src="assets/Design sem nome (9).svg" alt="" style="width: 100%;">
+                           
+                        </div>
                     </div>
-                    <h3>Conhecimento validado pela plataforma</h3>
-                    <p>Ser parceiro oficial do Mercado Livre é reconhecimento técnico. A VYLO atua conforme regras, métricas e estratégias que funcionam de fato no ecossistema.</p>
+                    
+                    <!-- Container inferior com conteúdo navegável -->
+                    <div class="knowledge-content">
+                        <!-- Tabs de navegação -->
+                        <div class="knowledge-tabs" id="knowledgeTabs">
+                            <button class="knowledge-tab active" data-tab="validated">Conhecimento Validado</button>
+                            <button class="knowledge-tab" data-tab="data">Estratégia Orientada</button>
+                            <button class="knowledge-tab" data-tab="sustainable">Crescimento Sustentável</button>
+                            <button class="knowledge-tab" data-tab="integration">Integração Físico-Digital</button>
+                            <button class="knowledge-tab" data-tab="human">Acompanhamento Humano</button>
+                        </div>
+                        
+                        <!-- Painéis de conteúdo -->
+                        <div class="knowledge-panels">
+                            <!-- Painel 1 -->
+                            <div class="knowledge-panel active" id="panel-validated">
+                                <h3 class="panel-title">Conhecimento validado pela plataforma</h3>
+                                <p class="panel-description">
+                                    Ser parceiro oficial do Mercado Livre é reconhecimento técnico. A VYLO atua conforme regras, 
+                                    métricas e estratégias que funcionam de fato no ecossistema, garantindo resultados comprovados 
+                                    e uma operação dentro dos mais altos padrões da plataforma.
+                                </p>
+                                
+                                <div class="panel-features">
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-certificate"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Certificação Oficial</h4>
+                                            <p>Reconhecimento direto do Mercado Livre como parceiro estratégico.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Métricas Comprovadas</h4>
+                                            <p>Estratégias testadas e validadas por dados reais da plataforma.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Painel 2 -->
+                            <div class="knowledge-panel" id="panel-data">
+                                <h3 class="panel-title">Estratégia orientada por dados reais</h3>
+                                <p class="panel-description">
+                                    Nossa consultoria se baseia em indicadores internos da plataforma, conectando algoritmo, 
+                                    reputação, logística e performance para uma operação estruturada e escalável que entrega 
+                                    resultados consistentes.
+                                </p>
+                                
+                                <div class="panel-features">
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-database"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Análise de Dados</h4>
+                                            <p>Decisões baseadas em indicadores reais da plataforma.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Algoritmo Otimizado</h4>
+                                            <p>Estratégias que trabalham a favor do algoritmo do Mercado Livre.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Painel 3 -->
+                            <div class="knowledge-panel" id="panel-sustainable">
+                                <h3 class="panel-title">Crescimento sustentável</h3>
+                                <p class="panel-description">
+                                    Nosso foco não é só vender mais, mas crescer com equilíbrio entre margem, estoque, 
+                                    reputação, anúncios, logística e gestão. Construímos negócios que prosperam a longo prazo.
+                                </p>
+                                
+                                <div class="panel-features">
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-balance-scale"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Equilíbrio Financeiro</h4>
+                                            <p>Crescimento com saúde financeira e margens sustentáveis.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-seedling"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Visão de Longo Prazo</h4>
+                                            <p>Estratégias que preparam seu negócio para o futuro.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Painel 4 -->
+                            <div class="knowledge-panel" id="panel-integration">
+                                <h3 class="panel-title">Integração entre físico e digital</h3>
+                                <p class="panel-description">
+                                    A VYLO conecta a operação física ao marketplace, alinhando processos, equipe e estratégia 
+                                    para um crescimento online consistente com o negócio, eliminando gargalos e otimizando recursos.
+                                </p>
+                                
+                                <div class="panel-features">
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Processos Integrados</h4>
+                                            <p>Conectamos sua operação offline com o mundo digital.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-warehouse"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Logística Otimizada</h4>
+                                            <p>Integração completa entre estoque físico e vendas online.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Painel 5 -->
+                            <div class="knowledge-panel" id="panel-human">
+                                <h3 class="panel-title">Acompanhamento humano e visão estratégica</h3>
+                                <p class="panel-description">
+                                    Além da execução, a VYLO orienta e desenvolve autonomia, garantindo decisões conscientes 
+                                    e uma operação preparada para o futuro, com suporte humano e estratégico em cada etapa.
+                                </p>
+                                
+                                <div class="panel-features">
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Suporte Dedicado</h4>
+                                            <p>Consultores especializados acompanham cada etapa do seu crescimento.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="panel-feature">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h4>Capacitação Contínua</h4>
+                                            <p>Desenvolvemos autonomia e conhecimento estratégico em sua equipe.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="knowledge-card">
-                    <div class="knowledge-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Estratégia orientada por dados reais</h3>
-                    <p>A consultoria se baseia em indicadores internos da plataforma, conectando algoritmo, reputação, logística e performance para uma operação estruturada.</p>
+                <div class="knowledge-summary" data-aos="fade-up" data-aos-delay="400">
+                    <p>O diferencial da Vylo como uma consultoria oficial do Mercado Livre está em unir acesso, método e resultado real, algo que vai muito além de "dicas" ou promessas genéricas.</p>
                 </div>
-                
-                <div class="knowledge-card">
-                    <div class="knowledge-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Crescimento sustentável</h3>
-                    <p>O foco não é só vender mais, mas crescer com equilíbrio entre margem, estoque, reputação, anúncios, logística e gestão.</p>
-                </div>
-                
-                <div class="knowledge-card">
-                    <div class="knowledge-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3>Integração entre físico e digital</h3>
-                    <p>A VYLO conecta a operação física ao marketplace, alinhando processos, equipe e estratégia para um crescimento online consistente com o negócio.</p>
-                </div>
-                
-                <div class="knowledge-card">
-                    <div class="knowledge-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Acompanhamento humano e visão estratégica</h3>
-                    <p>Além da execução, a VYLO orienta e desenvolve autonomia, garantindo decisões conscientes e uma operação preparada para o futuro.</p>
-                </div>
-            </div>
-            
-            <div class="knowledge-summary" data-aos="fade-up" data-aos-delay="400">
-                <p>O diferencial da Vylo como uma consultoria oficial do Mercado Livre está em unir acesso, método e resultado real, algo que vai muito além de "dicas" ou promessas genéricas.</p>
             </div>
         </div>
     </section>
@@ -447,7 +937,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
@@ -468,9 +958,8 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="js/main.js"></script>
     <script>
-        // Initialize AOS animations
+        // Inicializa AOS
         AOS.init({
             duration: 800,
             once: true,
@@ -479,7 +968,7 @@
             easing: 'ease-in-out'
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -497,12 +986,189 @@
             });
         });
 
-        // Simple FAQ functionality
+        // FAQ
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
-                item.classList.toggle('active');
+                const isActive = item.classList.contains('active');
+                
+                // Fecha outras FAQs
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Alterna FAQ atual
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
+        });
+
+        // Contadores animados
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number[data-count]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = counter.getAttribute('data-count');
+                        const isPercentage = target.includes('%');
+                        const finalValue = isPercentage ? 
+                            parseInt(target) : 
+                            parseInt(target.replace('+', ''));
+                        
+                        animateCounter(counter, 0, finalValue, 2000);
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => observer.observe(counter));
+        }
+        
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                
+                if (element.getAttribute('data-count').includes('%')) {
+                    element.textContent = value + '%';
+                } else {
+                    element.textContent = value.toLocaleString() + '+';
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Inicia quando o DOM carrega
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCounters();
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Validação simples
+                    const submitBtn = this.querySelector('.btn-submit');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        alert('Obrigado pelo seu contato! Entraremos em contato em breve.');
+                        contactForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 1500);
+                });
+            }
+            
+            // WhatsApp input mask
+            const whatsappInput = document.getElementById('whatsapp');
+            if (whatsappInput) {
+                whatsappInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length > 11) {
+                        value = value.substring(0, 11);
+                    }
+                    
+                    if (value.length > 10) {
+                        value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+                    } else if (value.length > 6) {
+                        value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+                    } else if (value.length > 2) {
+                        value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                    } else if (value.length > 0) {
+                        value = value.replace(/^(\d*)/, '($1');
+                    }
+                    
+                    e.target.value = value;
+                });
+            }
+        });
+        // Sistema de tabs para a seção "Saiba Mais"
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.knowledge-tab');
+            const panels = document.querySelectorAll('.knowledge-panel');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove a classe active de todas as tabs e panels
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
+                    
+                    // Adiciona a classe active na tab clicada
+                    this.classList.add('active');
+                    
+                    // Mostra o panel correspondente
+                    const activePanel = document.getElementById(`panel-${tabId}`);
+                    if (activePanel) {
+                        activePanel.classList.add('active');
+                    }
+                });
+            });
+            
+            // Anima os números das estatísticas
+            const statValues = document.querySelectorAll('.stat-value');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const stat = entry.target;
+                        const originalText = stat.textContent;
+                        
+                        // Remove qualquer formatação existente
+                        const cleanText = originalText.replace('R$ ', '').replace('%', '');
+                        const isCurrency = originalText.includes('R$');
+                        const isPercentage = originalText.includes('%');
+                        const value = parseFloat(cleanText);
+                        
+                        if (!isNaN(value)) {
+                            let current = 0;
+                            const increment = value / 50; // Anima em 50 steps
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= value) {
+                                    current = value;
+                                    clearInterval(timer);
+                                }
+                                
+                                // Formata o valor conforme o tipo
+                                if (isCurrency) {
+                                    stat.textContent = `R$ ${Math.round(current).toLocaleString('pt-BR')}`;
+                                } else if (isPercentage) {
+                                    stat.textContent = `${Math.round(current)}%`;
+                                } else {
+                                    stat.textContent = Math.round(current);
+                                }
+                            }, 30);
+                        }
+                        
+                        observer.unobserve(stat);
+                    }
+                });
+            }, observerOptions);
+            
+            statValues.forEach(stat => observer.observe(stat));
         });
     </script>
 </body>
